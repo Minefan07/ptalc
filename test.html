@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Point to a Line Calculator</title>
+		<style>
+			input {
+				width: 40px;
+			}
+		</style>
+	</head>
+	<script>
+		function main()
+		{
+			var x1 = document.getElementById("x1").value;
+			var y1 = document.getElementById("y1").value;
+			var m1 = document.getElementById("m1").value;
+			var b1 = document.getElementById("b1").value;
+			var output = document.getElementById("output");
+			
+			var m2 = -1/m1;          //perpendicular
+			var b2 = y1 - (x1 * m2); //line
+			
+			//output.innerHTML = "y = " + m2 + "x + " + b2;
+			
+			var m3 = parseFloat(m2) + parseFloat(-m1); //setting up a system of equations
+			var b3 = parseFloat(b2) + parseFloat(-b1);
+			
+			//output.innerHTML += "<br>" + m3 + " " + b3;
+			
+			var x2 = -b3/m3;
+			var y2 = (m2*x2) + b2;
+			
+			//output.innerHTML += "<br>(" + x2 + "," + y2 + ")";
+			
+			//distance formula = sqrt((x2-x1)^2 + (y2-y1)^2)
+			
+			var distance = Math.sqrt((x2-x1)**2 + (y2-y1)**2);
+			
+			output.innerHTML = distance;
+			output.innerHTML += "<br><br>This would be accomplished by first "
+		}
+	</script>
+	<body>
+		Input a point A, and the equation in slope-intercept form for line <i>l</i>. This will calculate the shortest distance between A and <i>l</i>.<br>
+		Point A: (<input placeholder="x" type="number" id="x1">,<input placeholder="y" type="number" id="y1">)
+		<br>Line <i>l</i>: y = <input placeholder="m" type="number" id="m1">x + <input placeholder="b" id="b1">
+		<br><button onclick="main(), getTheAltNumberAndThenAnswer()">Go</button><br><br>
+		Distance <i>d</i>: <div id="output"></div><br><br><br><div id="output2"></div>
+	</body>
+</html>
